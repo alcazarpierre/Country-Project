@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
     time_to: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
+    }, 
 
     season: {
         type: DataTypes.STRING,
