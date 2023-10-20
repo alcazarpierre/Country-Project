@@ -19,10 +19,8 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            isIn: {
-              args: [[1, 2, 3, 4, 5]],
-              msg: 'El valor debe estar entre 1 y 5.',
-            },
+            "max":5,
+            "min":1
           },
     },
     time_to: {
@@ -31,17 +29,11 @@ module.exports = (sequelize) => {
     }, 
 
     season: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isIn: {
-            args: [['verano', 'otoño', 'invierno', 'primavera']],
-            msg: 'El valor debe ser una de las siguientes temporadas: verano, otoño, invierno, primavera.',
-          },
-        },
+        type: DataTypes.ENUM("Summer","Autumn", "Winter","Spring"),
+        allowNull: false
       },
 
   },
-  {timestamps: false}
+    {timestamps: false}
   );
 };

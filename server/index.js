@@ -1,6 +1,7 @@
 const axios = require("axios");
 const server = require("./src/server");
 const { conn } = require('./src/db.js');
+const {loadInfo} = require ("./src/utils/loadDb.js");
 const PORT = 3001;
 
 
@@ -18,9 +19,11 @@ const PORT = 3001;
 
 async function startServer() {
   try {
-    await conn.sync({ force: true});  //setear en true durante la fase de desarrollo y pruebas para forzar la eliminacion de todas las tablas y creacion de nuevas, en la fase de produccion o deploy, mantenerlo en false.
+    await conn.sync({ force: false});  //setear en true durante la fase de desarrollo y pruebas para forzar la eliminacion de todas las tablas y creacion de nuevas, en la fase de produccion o deploy, mantenerlo en false.
     console.log (`Base de Datos sincronizada`);
+
     server.listen (PORT, () => {
+      loadInfo();
       console.log(`Servidor escuchando en el puerto: ${PORT}`);
     });
     

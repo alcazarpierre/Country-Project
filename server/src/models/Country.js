@@ -8,13 +8,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(3),
       allowNull: false,
       primaryKey: true,
-      validate: {
-        isOnlyLetters: function (value) {
-          if (!/^[A-Za-z]+$/.test(value)) {
-            throw new Error('El campo debe contener solo letras.');
-          }
-        }
-      }
+      // validate: {
+      //   isOnlyLetters: function (value) {
+      //     if (!/^[A-Za-z]+$/.test(value)) {
+      //       throw new Error('El campo debe contener solo letras.');
+      //     }
+      //   }
+      // }
     },
 
     name: {
