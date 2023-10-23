@@ -1,0 +1,45 @@
+.landingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(2, 36, 40, 0.781);
+    padding: 5%;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.767);
+    border-radius: 30px;
+    height: 680px;
+   
+}
+
+.title{
+    text-align: center;
+}
+
+
+.botonIngresar {
+    text-align: center;
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s; /* Transición para el color de fondo */
+}
+
+/* Efecto de aumento de luminosidad al pasar el cursor por encima */
+.botonIngresar:hover {
+    background-color: #555; /* Fondo ligeramente más claro */
+}
+
+
+
+@media (min-width: 480px){
+    
+    }
+    
+@media (min-width: 760px){
+        
+    }
+    
+@media (min-width: 960px){
+       
+    }
