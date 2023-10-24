@@ -1,9 +1,46 @@
-import React from 'react'
+import {Link} from 'react-router-dom';
+import React from "react";
+import style from "./navBar.module.css";
+import { useState } from 'react';
+import SearchBar from "../searchbar/SearchBar"
+import { useDispatch } from 'react-redux';
 
 const NavBar = () => {
-  return (
-    <div>NavBar</div>
-  )
-}
+    const [searchName, setSearchName] = useState('');
+    const dispatch = useDispatch();
+  
+    const handleHomePageClick = () => {
+      setSearchName('');
+      dispatch(clearFilters()); // Despacha la acción para limpiar filtros
+      dispatch(getCountries()); // Despacha la acción para obtener países nuevamente
+    };
 
-export default NavBar
+    const handleInputChange = (event) => { 
+        setSearchName(event.target.value.trim());
+    };
+
+    return(
+        <div className={style.NavBar}>
+            <div>
+                <SearchBar 
+                    className={style.SearchBar} 
+                    searchValue={searchName} 
+                    onSearchChange={handleInputChange} 
+                />
+            </div>
+            <div className={style.buttonsContainer}>
+                <Link to="/home" onClick={handleHomePageClick}>
+                    <button>Home Page</button>
+                </Link>
+                <Link to={`/form`}>
+                    <button>Create Activity</button>
+                </Link>
+                <Link to="/">
+                    <button>Landing</button>
+                </Link>
+            </div>
+        </div>
+    )
+};
+
+export default NavBar;
