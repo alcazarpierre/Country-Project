@@ -147,7 +147,7 @@ const form = () => {
         <div className={style.formField}>
           <label>Schedule: </label>
           <input
-            type="time"
+            type="number"
             name="duration"
             value={activity.duration}
             onChange={changeHandler}
@@ -166,10 +166,10 @@ const form = () => {
             <option value="" disabled>
               Select a season:
             </option>
-            <option value="Summer">Summer</option>
-            <option value="Autumn">Autumn</option>
-            <option value="Winter">Winter</option>
-            <option value="Spring">Spring</option>
+            <option value="Verano">Verano</option>
+            <option value="Otono">Otoño</option>
+            <option value="Invierno">Invierno</option>
+            <option value="Primavera">Primavera</option>
           </select>
           {errors.season && (
             <span className={style.formError}>{errors.season}</span>

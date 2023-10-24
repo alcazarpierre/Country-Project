@@ -20,7 +20,7 @@ const createActivity = async (name, difficulty, time_to, season, countries) => {
         const activity = { 
             name,
             difficulty,
-            time_to,
+            time_to: time_to ? time_to : null,
             season
         };
 
