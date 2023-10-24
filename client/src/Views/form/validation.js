@@ -21,7 +21,7 @@ const validations = (activity) => {
       errors.difficulty = "The difficulty range can only be from 1 to 5";
     }
   
-    if (activity.time_to === "0"){
+    if (activity.time_to === 0){
       errors.time_to = "The duration can't be 0.";
     }
     if (activity.time_to > 24) {

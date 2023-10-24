@@ -98,6 +98,8 @@ const form = () => {
       countries: countriesIdsArray //con los id de los países para uqe haga la relacion
     };
 
+    console.log(activityData);
+
     axios
       .post("http://localhost:3001/activities/form", activityData)
       .then((res) => {
@@ -148,8 +150,8 @@ const form = () => {
           <label>Schedule: </label>
           <input
             type="number"
-            name="duration"
-            value={activity.duration}
+            name="time_to"
+            value={activity.time_to}
             onChange={changeHandler}
           />
           {errors.countries && (
