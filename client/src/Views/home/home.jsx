@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    //dispatch(getCountries()); //a penas empieza la página uso un use effect para que ya tenga cargados
+    dispatch(getCountries()); //a penas empieza la página uso un use effect para que ya tenga cargados
   }, [dispatch]);
   
   useEffect(() => {

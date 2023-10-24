@@ -19,7 +19,7 @@ const location = useLocation();
       <Routes>
         <Route path="/" Component={landing}/>
         <Route path="/home" Component={Home}/>
-        <Route path="/detail:id" Component={detail}/>
+        <Route path="/detail/:id" Component={detail}/>
         <Route path="/form" Component={form}/>
       </Routes>
    </div>

@@ -63,7 +63,7 @@ export const getActivities = () => {
   return async function (dispatch) {
     try {
       const { data }  = await axios.get(
-        `${ENDPOINT}/countries/name?name=${name}`
+        `${ENDPOINT}/countries?name=${name}`
         );
         return dispatch({
         type: SEARCH_COUNTRY,
