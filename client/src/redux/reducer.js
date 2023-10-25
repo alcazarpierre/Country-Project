@@ -12,7 +12,7 @@ import {
   const initialState = {
     countries: [],
     activities: [],
-    allCountries: [],
+    allCountries: [], //*//
     order: "",
     filterContinent: "",
     filterActivity: ""

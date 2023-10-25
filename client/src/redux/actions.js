@@ -87,67 +87,95 @@ export const combinedFilters = (order, continent, activity) => {
 
       let filterCountries = data;
 
-
+      //Si solo selecciona el ordenamiento:
       if (order && !continent && !activity) {
-        // Filtrar y ordenar si se proporciona solo el parámetro 'order'
-        if(order === "") filterCountries;
-        else if (order === "asc") {
-          filterCountries.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (order === "desc") {
-          filterCountries.sort((a, b) => b.name.localeCompare(a.name));
-        } else if (order === "lowerPop") {
-          filterCountries.sort((a, b) => a.population - b.population);
-        } else if (order === "higherPop") {
-          filterCountries.sort((a, b) => b.population - a.population);
+        switch (order) {
+          case "":
+            
+            break;
+          case "asc":
+            filterCountries.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case "desc":
+            filterCountries.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+          case "lowerPop":
+            filterCountries.sort((a, b) => a.population - b.population);
+            break;
+          case "higherPop":
+            filterCountries.sort((a, b) => b.population - a.population);
+            break;
+          default:
         }
+      
+      //Si solo se filtra por continente:
       } else if (!order && continent && !activity) {
-        // Filtrar por continente si se proporciona solo el parámetro 'continent'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
         );
+
+      //Si solo se filtra por actividad:
       } else if (!order && !continent && activity) {
-        // Filtrar por actividad si se proporciona solo el parámetro 'activity'
         if(activity === "") filterCountries
         else{
           filterCountries = filterCountries.filter((country) =>
-            country.Activities.some((act) => act.name === activity)//some comprueba si almenos un elemento cumple con la condicion
+            country.Activities.some((act) => act.name === activity)//some=si al menos un elemento cumple
           );
         }
+
+      //Si se selecciona Orden y Continentes:
       } else if (order && continent && !activity) {
-        // Filtrar por orden y continente si se proporcionan 'order' y 'continent'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
         );
-        if(order === "") filterCountries;
-        else if (order === "asc") {
-          filterCountries.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (order === "desc") {
-          filterCountries.sort((a, b) => b.name.localeCompare(a.name));
-        } else if (order === "lowerPop") {
-          filterCountries.sort((a, b) => a.population - b.population);
-        } else if (order === "higherPop") {
-          filterCountries.sort((a, b) => b.population - a.population);
+        switch (order) {
+          case "":
+            
+            break;
+          case "asc":
+            filterCountries.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case "desc":
+            filterCountries.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+          case "lowerPop":
+            filterCountries.sort((a, b) => a.population - b.population);
+            break;
+          case "higherPop":
+            filterCountries.sort((a, b) => b.population - a.population);
+            break;
+          default:
         }
+      
+      //Si se selecciona Orden y Actividad:
       } else if (order && !continent && activity) {
-        // Filtrar por orden y actividad si se proporcionan 'order' y 'activity'
         if(activity === "") filterCountries;
         else{
           filterCountries = filterCountries.filter((country) =>
             country.Activities.some((act) => act.name === activity)
           );
         }
-        if(order === "") filterCountries;
-        else if (order === "asc") {
-          filterCountries.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (order === "desc") {
-          filterCountries.sort((a, b) => b.name.localeCompare(a.name));
-        } else if (order === "lowerPop") {
-          filterCountries.sort((a, b) => a.population - b.population);
-        } else if (order === "higherPop") {
-          filterCountries.sort((a, b) => b.population - a.population);
+        
+        switch (order) {
+          case "":
+            break;
+          case "asc":
+            filterCountries.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case "desc":
+            filterCountries.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+          case "lowerPop":
+            filterCountries.sort((a, b) => a.population - b.population);
+            break;
+          case "higherPop":
+            filterCountries.sort((a, b) => b.population - a.population);
+            break;
+          default:
         }
+
+      //Si se selecciona Continente y Actividad:
       } else if (!order && continent && activity) {
-        // Filtrar por continente y actividad si se proporcionan 'continent' y 'activity'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
         );
@@ -157,8 +185,9 @@ export const combinedFilters = (order, continent, activity) => {
             country.Activities.some((act) => act.name === activity)
           );
         }
+
+      //Si se seleccionan los tres filtros:
       } else if (order && continent && activity) {
-        // Filtrar por orden, continente y actividad si se proporcionan 'order', 'continent' y 'activity'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
         );
@@ -168,15 +197,25 @@ export const combinedFilters = (order, continent, activity) => {
             country.Activities.some((act) => act.name === activity)
           );
         }
-        if(order === "") filterCountries;
-        if (order === "asc") {
-          filterCountries.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (order === "desc") {
-          filterCountries.sort((a, b) => b.name.localeCompare(a.name));
-        } else if (order === "lowerPop") {
-          filterCountries.sort((a, b) => a.population - b.population);
-        } else if (order === "higherPop") {
-          filterCountries.sort((a, b) => b.population - a.population);
+        switch (order) {
+          case "":
+            // No se realiza ninguna operación
+            break;
+          case "asc":
+            filterCountries.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case "desc":
+            filterCountries.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+          case "lowerPop":
+            filterCountries.sort((a, b) => a.population - b.population);
+            break;
+          case "higherPop":
+            filterCountries.sort((a, b) => b.population - a.population);
+            break;
+          default:
+            // En caso de un valor inesperado en 'order', no se realiza ninguna operación
+
         }
       }
 
