@@ -1,3 +1,9 @@
+.filters{
+  background-color: rgba(0, 0, 0, 0.186);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .small{
     color: #fff;
   }

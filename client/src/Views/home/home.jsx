@@ -1,8 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Cards from "../../Components/cards/Cards";
 import Paginated from '../../Components/Paginated/Paginated';
+
 import style from "./home.module.css"
 
 import {getCountries, 
@@ -81,7 +83,7 @@ const Home = () => {
 
   return (
     <div>
-      <div>
+      <div className={style.filters}>
         <small className={style.small}>  Ordenar: </small>
         <select
           onChange={(event) => orderedCountriesHandler(event)} 

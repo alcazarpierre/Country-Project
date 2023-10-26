@@ -1,18 +1,20 @@
 import {Link} from 'react-router-dom';
-import React from "react";
-import style from "./navBar.module.css";
-import { useState } from 'react';
-import SearchBar from "../searchbar/SearchBar"
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import React from "react";
+import SearchBar from "../searchbar/SearchBar"
+import style from "./navBar.module.css";
 
 const NavBar = () => {
     const [searchName, setSearchName] = useState('');
     const dispatch = useDispatch();
-  
+    
+    //Handlers:
+    //Al ir a Inicio, setea el search como vacio, limpia filtros y llama a paises
     const handleHomePageClick = () => {
       setSearchName('');
-      dispatch(clearFilters()); // Despacha la acción para limpiar filtros
-      dispatch(getCountries()); // Despacha la acción para obtener países nuevamente
+      dispatch(clearFilters());
+      dispatch(getCountries()); 
     };
 
     const handleInputChange = (event) => { 
@@ -30,10 +32,10 @@ const NavBar = () => {
             </div>
             <div className={style.buttonsContainer}>
                 <Link to="/home" onClick={handleHomePageClick}>
-                    <button>Home Page</button>
+                    <button>Página Inicio</button>
                 </Link>
                 <Link to={`/form`}>
-                    <button>Create Activity</button>
+                    <button>Crear Actividad</button>
                 </Link>
                 <Link to="/">
                     <button>Landing</button>

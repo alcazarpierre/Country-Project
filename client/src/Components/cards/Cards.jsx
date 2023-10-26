@@ -2,14 +2,15 @@ import React from 'react'
 import Card from '../card/Card'
 import style from "./cards.module.css"
 
-function Cards({ currentCountries }) { //recibe props desde Home, para mostrar solo los 10 países actuales
+//Recibe desde Home por Props el arreglo de 10 paises:
+function Cards({ currentCountries }) { 
 
   return (
     <div className={style.cardsContainer}>
-      { 
+      {   //Mapeamos currentCountries usando el ternario (si el objeto no es null ni undef)
+          //por cada country mapeada, se le envía a la Card 
           currentCountries?.map((country)=>{
-            return ( /*Por cada card que mapee le paso a la Card */
-            
+            return ( 
               <Card 
                 key={country.id}
                 id={country.id}

@@ -1,71 +1,64 @@
 import style from "./paginated.module.css";
 
+//Recibimos por props las propiedades desde Home: 
 const Paginated = ({ countriesPerPage, countries, paginated, currentPage }) => {
+  //Calculamos la cantidad total de páginas:
   const totalPages = Math.ceil(countries / countriesPerPage);
 
-  // Función para ir a una página específica
-  const goToPage = (pageNumber) => { //cada vez que se cambia de página con el boton > le sumo uno a la pagina actual
+  // Función para ir a una página específica:
+  
+  const goToPage = (pageNumber) => { 
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       paginated(pageNumber);
     }
   };
 
-  // Calculamos las páginas cercanas a la página actual
+  // Declaramos el arreglo donde se almacenaran las paginas cercanas
   const nearbyPages = [];
-  const maxNearbyPages = 2; // Cantidad de páginas cercanas a mostrar (2 a la izquierda y 2 a la derecha)
+  // En esta variable, indicamos cuantas paginas queremos mostrar antes y despues 
+  const maxNearbyPages = 2; 
 
   for (
     let i = currentPage - maxNearbyPages; i <= currentPage + maxNearbyPages; i++) {
     if (i > 0 && i <= totalPages) {
-      // le resto 2 para que lo primero que muestr es 2 páginas antes
-      nearbyPages.push(i); //le sumo 2 si i es menor o igual a la página actual + 2, o sea, para mostrar las dos de la derecha
+      //si i cumple con las condiciones, lo pusheamos al arreglo
+      nearbyPages.push(i); 
     }
   }
 
   return (
     <nav className={style.paginate}>
 
-      {/* Botón para ir a la primera página */}
       <button onClick={() => goToPage(1)} disabled={currentPage === 1}>
-        First Page
+        Inicio
       </button>
-
-      {/* Botón para retroceder una página */}
 
       <button
         onClick={() => goToPage(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        &lt; {/*esto representa al símbolo >, para ir a la siguiente página*/}
+        disabled={currentPage === 1}>
+        Prev 
       </button>
 
-      {/*aca hago el renderizado de los numeros de las paginas*/}
+      {/* Renderizamos los numeros de las paginas:  */}
       {nearbyPages.map((pageNumber) => (
         <button
           key={pageNumber}
           onClick={() => goToPage(pageNumber)}
-          // Agregar la clase "active" si la página es la actual
-          className={pageNumber === currentPage ? style.active : ""}
-        >
+          className={style.active}>
           {pageNumber}
         </button>
       ))}
 
-      {/* Botón para avanzar una página */}
       <button
         onClick={() => goToPage(currentPage + 1)} 
-        disabled={currentPage === totalPages}
-      >
-        &gt; 
+        disabled={currentPage === totalPages}>
+        Sig 
       </button>
-
-      {/* Botón para ir a la última página */}
 
       <button
         onClick={() => goToPage(totalPages)}
-        disabled={currentPage === totalPages}
-      >
-        Last Page
+        disabled={currentPage === totalPages}>
+        Ultima
       </button>
     </nav>
   );

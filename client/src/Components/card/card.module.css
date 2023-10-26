@@ -1,4 +1,6 @@
 .container {
+  width: 120px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,59 +10,122 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   margin-bottom: 20px;
-  background-color: rgba(2, 49, 20, 0.562); 
+  background-color: rgba(2, 49, 20, 0.74); 
 }
 
 .cardImage {
-  width: 150px;
+  width: 60px;
+  height: 40px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .title {
-  font-size: 1.6rem;
+  height: 70px;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .continent {
-  font-size: 1rem;
+  height: 30px;
+  font-size: 0.8rem;
   margin-bottom: 5px;
 }
 
 button {
   background-color: #007bff;
   color: #fff;
-  padding: 8px 16px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-@media screen and (max-width: 768px) {
+@media (min-width: 480px){
+
   .container {
-    padding: 0.5rem;
+    width: 140px;
+    height: 220px;
+   
   }
-
+  
   .cardImage {
-    max-height: 150px;
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
   }
-
+  
   .title {
-    font-size: 1rem;
+    height: 80px;
+    font-size: 1.1rem;
   }
-
+  
   .continent {
-    font-size: 0.8rem;
+    height: 30px;
+    font-size: 0.9rem;
+    font-style: italic;
   }
 
-  button {
-    font-size: 0.9rem;
-    padding: 6px 12px;
+}
+
+@media (min-width: 760px){
+
+  .container {
+    width: 150px;
+    height: 260px;
+    
+  }
+  
+  .cardImage {
+    width: 100px;
+    height: 60px;
+   
+  }
+  
+  .title {
+    height: 100px;
+    font-size: 1.2rem;
+  
+  }
+  
+  .continent {
+    height: 30px;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+}
+
+@media (min-width: 960px){
+  .container {
+    width: 180px;
+    height: 280px;
+    margin: 10px;
+  
+  }
+  
+  .cardImage {
+    width: 100px;
+    height: 70px;
+  
+  }
+  
+  .title {
+    height: 90px;
+    font-size: 1.4rem;
+
+  }
+  
+  .continent {
+    height: 30px;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
   }
 }

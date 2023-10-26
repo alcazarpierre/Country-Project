@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import style from "./detail.module.css"
 
 const detail = () => {
@@ -16,7 +16,7 @@ const detail = () => {
         if (data.id) {
           setCountry(data);
         } else {
-          window.alert("Can't find the detail of that country");
+          window.alert("No se puede mostrar el Detalle");
         }
       } catch (error) {
         console.error("Error fetching country details:", error);
@@ -29,75 +29,57 @@ const detail = () => {
   }, [id]);
 
   useEffect(() => {
-    setCountry({}); // Limpiar los detalles al iniciar la búsqueda
+    setCountry({}); 
   }, [id]);
 
-  // // Redirigir al usuario a la página principal al iniciar una búsqueda
-  // const handleSearchChange = (event) => {
-  //   const searchTerm = event.target.value.trim();
-  //   if (searchTerm) {
-  //     navigate('/home');
-  //   }
-  // };
-
   return (
-    <div>
-      {/* <h2 className={style.detailHeading}>Country Details</h2>
-      <img src={country.flags} alt={country.name} className={style.detailImage} /> */}
-      <div  
-      className={style.detailContainer}
-      style={{ backgroundImage: `url(${country.flags})` }}
-      >
-  <div className={style.detailItemContainer}>
-  <div className={style.detailItem}>
-    <label className={style.detailLabel}>ID:</label>
-    <span className={style.detailValue}>{id}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Name: </span>
-    <span className={style.detailValue}>{country.name}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Continent: </span>
-    <span className={style.detailValue}>{country.continent}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Capital: </span>
-    <span className={style.detailValue}>{country.capital}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Subregion: </span>
-    <span className={style.detailValue}>{country?.subregion}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Area: </span>
-    <span className={style.detailValue}>{country?.area}</span>
-  </div>
-  <div className={style.detailItem}>
-    <span className={style.detailLabel}>Population: </span>
-    <span className={style.detailValue}>{country.population}</span>
-  </div>
-</div>
-</div>
-  <div>
-  {country?.Activities?.length === 0 ? (
-    <p className={style.noActivitiesMessage}>There are no activities for this country yet. Create yours!</p>
-    ) : (
-      <div>
-          <span className={style.activitiesTitle}>Activities: </span>
-          {country?.Activities?.map((activity) => (
-            <div key={activity.id} className={style.activityCard}>
-              <h3>{activity.name}</h3>
-              <p className={style.activityDetails}>Difficulty: {activity.difficulty}</p>
-              <p className={style.activityDetails}>Schedule: {activity.time_to}</p>
-              <p className={style.activityDetails}>Season: {activity.season}</p>
-            </div>
-          ))}
+   
+    // </div>
+        <div className={style.container}>
+        
+        {/* Titulo */}
+        <h2 className={style.title}>Detalles del País</h2>
+        <div className={`${style.detailContainer}  ${style.fadeIn}`}>
+          {/* Bandera */}
+          <img src={country?.flag_image} alt="Imagen no disponible" className={style.imgFlag} />
+          <div className={style.detailsSection}>
+            {/* Detalles */}
+            <h2 className={style.detailsTitle}>{country?.name}</h2>
+            <p className={style.detailItem}>{country?.continent}</p>
+            <p className={style.detailItem}>{country?.id}</p>
+            <p className={style.detailItem}>Capital: {country?.capital}</p>
+            <p className={style.detailItem}>Región: {country?.subregion}</p>
+            <p className={style.detailItem}>Área: {country?.area} km²</p>
+            <p className={style.detailItem}>Población: {country?.population} Hab.</p>
+          </div>
+          <div className={style.activitiesSection}>
+            {/* Actividades */}
+            <h3 className={style.activitiesTitle}>Actividades del País</h3>
+            {country?.Activities && country.Activities.length ? (
+              country.Activities.map((e) => {
+                return (
+                  <div key={e.name}>
+                    {/* Detalle de las actividades */}
+                    <h4 className={style.detailItem}>{e.name}</h4>
+                    <p className={style.activityDetail}>Dificultad: {e.difficulty}</p>
+                    <p className={style.activityDetail}>Duración: {e.time_to} horas</p>
+                    <p className={style.activityDetail}>Temporada: {e.season}</p>
+                  </div>
+                );
+              })
+            ) : (
+              // Mensaje cuando no hay actividades
+              <p className={style.detailItem}>No existen actividades en este país</p>
+            )}
+            {/* Boton para crear actividad */}
+            <Link to="/form">
+              <button className={style.button}>Crear Actividad</button>
+            </Link>
+          </div>
         </div>
-      )}
       </div>
-      </div>
+
     );
   };
 
-export default detail
+export default detail;
