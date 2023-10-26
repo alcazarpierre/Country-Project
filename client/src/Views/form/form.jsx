@@ -4,7 +4,7 @@ import validations from "./validation"
 import { getCountries } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./form.module.css"
 
 const form = () => {
@@ -104,25 +104,31 @@ const form = () => {
       .post("http://localhost:3001/activities/form", activityData)
       .then((res) => {
         console.log("Response from server:", res.data);
-        const confirmed = window.confirm("Are you sure you want to submit?");
+        const confirmed = window.confirm("Confirma la creación?");
         if(confirmed){
-          alert("Activity created successfully!");
+          alert("Actividad creada con Exito!");
           navigate("/home");
         }
   
       })
       .catch((error) => {
-        console.error("Error creating activity:", error.response.data);
+        console.error("Hubo un error:", error.response.data);
     
-        alert(`Error creating activity. Please try again.`);
+        alert(`Hubo un error, actualice e intente nuevamente.`);
       });
   };
 
   return (
     <form onSubmit={handleSubmit} className={style.formContainer}> {/*el handle submit es para cuando se crea una actividad*/}
+      <div>
+      <Link to={`/home`}>
+          <button>Volver</button>
+      </Link>
+      </div>
+      <h2 className={style.title}>Aquí puedes crear una actividad</h2>
       <div className={style.formContent}>
         <div className={style.formField}>
-          <label>Name: </label>
+          <label>Nombre de la actividad: </label>
           <input
             type="text"
             name="name"
@@ -134,12 +140,13 @@ const form = () => {
           )}
         </div>
         <div className={style.formField}>
-          <label>Difficulty: </label>
+          <label>Dificultad: </label>
           <input
             type="number"
             name="difficulty"
             value={activity.difficulty}
             onChange={changeHandler}
+            placeholder="Nivel de dificultad del 1 al 5"
           />
           {errors.difficulty && (
             <span className={style.formError}>{errors.difficulty}</span>
@@ -147,26 +154,27 @@ const form = () => {
         </div>
 
         <div className={style.formField}>
-          <label>Schedule: </label>
+          <label>Duración: </label>
           <input
             type="number"
             name="time_to"
             value={activity.time_to}
             onChange={changeHandler}
+            placeholder="Ingrese el tiempo en horas"
           />
           {errors.countries && (
             <span className={style.formError}>{errors.duration}</span>
           )}
         </div>
         <div>
-          <label>Season: </label>
+          <label>Temporada: </label>
           <select
             name="season"
             value={activity.season}
             onChange={changeHandler}
           >
             <option value="" disabled>
-              Select a season:
+              Seleccione:
             </option>
             <option value="Verano">Verano</option>
             <option value="Otono">Otoño</option>
@@ -179,14 +187,14 @@ const form = () => {
         </div>
 
         <div className={style.formField}>
-          <label>Countries: </label>
+          <label>Paises: </label>
           <div className={style.formCountrySearch}>
             <input
               type="text"
               name="countries"
               value={activity.countrySearch}
               onChange={handleCountrySearch}
-              placeholder="Search countries..."
+              placeholder="Ingrese un pais"
             />
             {errors.countries && (
               <span className={style.formError}>{errors.countries}</span>
@@ -226,14 +234,16 @@ const form = () => {
           activity.season &&
           activity.countries.length > 0 &&
           Object.keys(errors).length === 0 ? (
-            <button className={style.formButton}>CREATE ACTIVITY</button>
+            <button className={style.formButton}>Crear la Actividad!</button>
           ) : (
             <button className={style.formButton} disabled>
-              Some fields are missing
+              Algunos campos están incompletos
             </button>
           )}
         </div>
       </div>
+      
+      
     </form>
   );
 };
